@@ -14,7 +14,7 @@ elec <- subset(elec,select = -c(Date))
 euro <- read.csv("euro100.csv")
 str(euro)
 euro$Date <-  dmy(euro$Date)
-#Data showing change in tempurature with respect to a baseline period from 1951 - 1980
+#Data showing change in temperature with respect to a baseline period from 1951 - 1980
 weather <- read.csv("weatherchange.csv")
 str(weather)
 weather <- subset(weather, select = c(Months, Year, Value, Area))
@@ -101,5 +101,16 @@ resultsweather = interrogate(agent4)
 resultsweather
 
 resultsweather %>% export_report(filename = 'weather_validation.html')
-  
-  
+
+
+library(DataExplorer)
+plot_str(fulllist)  
+plot_missing(cov)
+plot_missing(elec)
+plot_missing(euro)
+plot_missing(weather)
+
+write.csv(weather, "weather.csv")
+write.csv(cov, "cov.csv")
+write.csv(elec, "elec.csv")
+write.csv(euro, "euro.csv")
